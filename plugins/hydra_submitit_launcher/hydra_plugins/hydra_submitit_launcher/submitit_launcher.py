@@ -95,7 +95,7 @@ class BaseSubmititLauncher(Launcher):
         params = self.params
         # build executor
         init_params = {"folder": self.params["submitit_folder"]}
-        specific_init_keys = {"max_num_timeout"}
+        specific_init_keys = {"max_num_timeout", "python"}
 
         init_params.update(
             **{
@@ -105,6 +105,7 @@ class BaseSubmititLauncher(Launcher):
             }
         )
         init_keys = specific_init_keys | {"submitit_folder"}
+
         executor = submitit.AutoExecutor(cluster=self._EXECUTOR, **init_params)
 
         # specify resources/parameters
